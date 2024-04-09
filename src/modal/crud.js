@@ -1,22 +1,24 @@
 import getConnection from "../database/database.js";
 // Get 1
-const getItem = async (id,table) => {
+
+export  const getItem =async (id,table) => {
     try {
         const conn = await getConnection()
-        const result = await conn.query(`SELECT * FROM ${table} WHERE id = ${id};`);
-
+        var sql = `SELECT * FROM ${table} WHERE id = ${id};`; 
+        const result = await conn.query(sql);
         return result;
-    } catch (error) {
+      } catch (error) {
         console.log(error)
-    }
-}
+      }     
+    } ;
+      
 
 //Get 1+
-const getListItem = async (field, table) => {
+export const getListItem = async (field, table) => {
     try {
         const conn = await getConnection()
-        const result = await conn.query(`SELECT * FROM ${table} WHERE ${Object.keys(field)} = ${Object.values(field)};`);
-
+        var sql = `SELECT * FROM ${table} WHERE ${Object.keys(field)} = "${Object.values(field)}";`
+        const result = await conn.query(sql);
         return result;
     } catch (error) {
         console.log(error)
