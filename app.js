@@ -1,8 +1,10 @@
 import express from  'express'
 import cronData from './src/controller/cron.js'
 import { getItem, getListItem } from './src/modal/crud.js'
+import 'dotenv/config'
+
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 cronData()
 
@@ -23,8 +25,6 @@ app.get('/api/v1/giaoduc/:id', async (req, res) => {
     } else {
       res.send(result[0])
     }
-    
-   
  })
 })
 
